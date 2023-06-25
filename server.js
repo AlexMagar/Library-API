@@ -13,7 +13,7 @@ connectMongoDB();
 
 //middleware
 app.use(morgan("dev")); //morgan saves the log 
-app.use(express.json())
+app.use(express.json()) //to parse the json data
 
 
 // apis
