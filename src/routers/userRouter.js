@@ -6,7 +6,6 @@ const router = express.Router();
 
 router.get("/", (req, res) =>{
     try {
-        console.log(req.body)
         res.json({
             status: "success",
             message: "Here are the user information"
@@ -22,7 +21,7 @@ router.get("/", (req, res) =>{
 
 router.post("/", async (req, res) =>{
     try {
-        
+
         const {password} = req.body;
         req.body.password = hashPassword(password);
 
