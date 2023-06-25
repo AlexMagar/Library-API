@@ -1,5 +1,27 @@
 
 @rootApi = http://localhost:8000
 
+@userApi = {{rootApi}}/api/v1/user
+
 ### server request testing
 GET {{rootApi}}
+
+# ============ user API here =============
+### get user
+GET  {{userApi}}
+
+### create user
+POST  {{userApi}}
+Content-Type: application/json
+
+{
+    "role": "admin",
+    "fName": "Ram",
+    "lName": "Smith",
+    "phone": "34653453",
+    "address": "somewhere in Australia",
+    "email": "ram@email.com",
+    "password": "123456"
+}
+
+# ============ Book API here =============
