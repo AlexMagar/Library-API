@@ -1,0 +1,5 @@
+
+@rootApi = http://localhost:8000
+
+### server request testing
+GET {{rootApi}}
