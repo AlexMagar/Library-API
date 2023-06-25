@@ -1,11 +1,23 @@
 import dotenv from 'dotenv'
 import express from 'express'
-
-const app = express();
-
-dotenv.config();
+import morgan from 'morgan';
+import userRouter from './src/routers/userRouter.js';
+import connectMongoDB from './src/config/mongoConfig.js'
 
 const PORT = process.env.PORT || 8000;
+const app = express();
+dotenv.config();
+
+//connect db
+connectMongoDB();
+
+//middleware
+app.use(morgan("dev")); //morgan saves the log 
+app.use(express.json())
+
+
+// apis
+app.use("/api/v1/user", userRouter)
 
 app.use("/", (req, res) =>{
     res.json({
