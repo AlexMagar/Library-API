@@ -65,18 +65,19 @@ router.post("/login", async (req, res) =>{
         //use bcrypt to check if the pw is matching
         console.log(user)
 
-        if(user?._id){
+        
+        if(user?._id){ //check null or not -> make sure aleast one user is in db
             const isMatch = comparePassword(password, user.password); //this one from bcrypt.js
             if(isMatch){
-                user.password = undefined;
+                user.password = undefined; //ways to aviod pw undefined
                 // const {password, ...rest} = user;
                 return res.json({
                     status: 'success',
                     message: 'logedin successfully',
+                    user,
                 })
             }
         }
-
         res.json({
             status: 'error',
             message: 'Invalid credentials',
