@@ -1,6 +1,6 @@
 import express from 'express'
-import {insertUser} from '../modles/user/UserModel.js';
-import { hashPassword } from '../utils/bcrypt.js';
+import {getUserByEmail, insertUser} from '../modles/user/UserModel.js';
+import { comparePassword, hashPassword } from '../utils/bcrypt.js';
 
 const router = express.Router();
 
@@ -25,8 +25,8 @@ router.post("/", async (req, res) =>{
         const {password} = req.body;
         req.body.password = hashPassword(password);
 
-        const user = await insertUser(req.body)
-
+        const user = await insertUser(req.body);
+        console.log(user)
         user?._id //if user._id is true
         ? res.json({
             status:"Sucess",
@@ -50,4 +50,44 @@ router.post("/", async (req, res) =>{
         })
     }
 });
+
+
+//this POST if for login
+router.post("/login", async (req, res) =>{
+    try {
+
+        //get the data
+        const {email, password} = req.body;
+        
+        //check if user exit with received email and get user from db
+        const user = await getUserByEmail(email);
+
+        //use bcrypt to check if the pw is matching
+        console.log(user)
+
+        if(user?._id){
+            const isMatch = comparePassword(password, user.password); //this one from bcrypt.js
+            if(isMatch){
+                user.password = undefined;
+                // const {password, ...rest} = user;
+                return res.json({
+                    status: 'success',
+                    message: 'logedin successfully',
+                })
+            }
+        }
+
+        res.json({
+            status: 'error',
+            message: 'Invalid credentials',
+        })
+        
+    } catch (error) {
+        res.json({
+            status: 'error',
+            message: error.message,
+        })
+    }
+})
+
 export default router;

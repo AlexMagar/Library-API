@@ -1,4 +1,5 @@
 import dotenv from 'dotenv'
+dotenv.config();
 import express from 'express'
 import morgan from 'morgan';
 import userRouter from './src/routers/userRouter.js';
@@ -7,7 +8,7 @@ import cors  from "cors";
 
 const PORT = process.env.PORT || 8000;
 const app = express();
-dotenv.config();
+
 
 //connect db
 connectMongoDB();
@@ -15,7 +16,7 @@ connectMongoDB();
 //middleware
 app.use(morgan("dev")); //morgan saves the log 
 app.use(express.json()) //to parse the json data
-app.use(cors);
+app.use(cors()); //cors() is the function 
 
 
 // apis
