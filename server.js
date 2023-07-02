@@ -5,6 +5,8 @@ import morgan from 'morgan';
 import userRouter from './src/routers/userRouter.js';
 import connectMongoDB from './src/config/mongoConfig.js'
 import cors  from "cors";
+import bookRouter from "./src/routers/bookRouter.js";
+
 
 const PORT = process.env.PORT || 8000;
 const app = express();
@@ -21,6 +23,7 @@ app.use(cors()); //cors() is the function
 
 // apis
 app.use("/api/v1/user", userRouter)
+app.use("/api/v1/book", bookRouter);
 
 app.use("/", (req, res) =>{
     res.json({

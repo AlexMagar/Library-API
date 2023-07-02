@@ -8,3 +8,4 @@ export const insertUser = (userObj) => {
 export const getUserByEmail = (email) =>{
   return UserSchema.findOne({email});
 }
+
