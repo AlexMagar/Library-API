@@ -20,7 +20,7 @@ Content-Type: application/json
     "lName": "Smith",
     "phone": "34653453",
     "address": "somewhere in Australia",
-    "email": "sham@email.com",
+    "email": "hari@email.com",
     "password": "123456"
 }
 
