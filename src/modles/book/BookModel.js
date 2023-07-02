@@ -8,7 +8,11 @@ export const getBooks = () => {
     return BookSchema.find();
   };
 
-  export const updateBooks = (obj) => {
-    return BookSchema.updateOne();
+  export const updateBooks = (_id, data) => {
+    return BookSchema.findByIdAndUpdate(_id, data);
+  }
+
+  export const deleteBooks = (_id) =>{
+    return BookSchema.findOneAndDelete(_id);
   }
   
