@@ -13,6 +13,6 @@ export const getBooks = () => {
   }
 
   export const deleteBooks = (_id) =>{
-    return BookSchema.findOneAndDelete(_id);
+    return BookSchema.findByIdAndDelete(_id);
   }
   
