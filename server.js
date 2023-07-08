@@ -6,6 +6,7 @@ import userRouter from './src/routers/userRouter.js';
 import connectMongoDB from './src/config/mongoConfig.js'
 import cors  from "cors";
 import bookRouter from "./src/routers/bookRouter.js";
+import burrowRouter from "./src/routers/burrowRouter.js";
 
 
 const PORT = process.env.PORT || 8000;
@@ -23,7 +24,8 @@ app.use(cors()); //cors() is the function
 
 // apis
 app.use("/api/v1/user", userRouter)
-app.use("/api/v1/book", bookRouter);
+app.use("/api/v1/books", bookRouter);
+app.use("/api/v1/burrow", burrowRouter);
 
 app.use("/", (req, res) =>{
     res.json({
