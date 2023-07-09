@@ -1,5 +1,5 @@
 import express from 'express'
-import { addBurrow } from '../modles/burrow/BurrowModel.js';
+import { addBurrow, getBurrowbyUserId, getBurrows } from '../modles/burrow/BurrowModel.js';
 import { updateBooks } from '../modles/book/BookModel.js';
 
 
@@ -43,6 +43,25 @@ router.post("/", async (req, res) =>{
             status: "error",
             message: error.message,
         })   
+    }
+})
+
+router.get("/", async (req, res) =>{
+    try {
+        const {role, _id} = req.userInfo;
+
+        const burrowHistory = role === "admin" ? await getBurrows() : await getBurrowbyUserId(_id);
+        res.json({
+            status: "success",
+            message: "Burrow list",
+            burrowHistory,
+        })
+
+    } catch (error) {
+        res.json({
+            status: "error",
+            message: error.message
+        })
     }
 })
 

@@ -5,6 +5,10 @@
 
 @burrowApi = {{rootApi}}/api/v1/burrow
 
+@bookApi = {{rootApi}}/api/v1/book
+
+
+
 ### server request testing
 GET {{rootApi}}
 
@@ -17,29 +21,36 @@ POST  {{userApi}}
 Content-Type: application/json
 
 {
-    "role": "admin",
-    "fName": "Ram",
+    "role": "student",
+    "fName": "Sita",
     "lName": "Smith",
     "phone": "34653453",
     "address": "somewhere in Australia",
-    "email": "hari@email.com",
+    "email": "sita@email.com",
     "password": "123456"
 }
 
-# ============ Book API here =============
+
+# ============ Book api 
+### fetch all book
+GET {{bookApi}}
+Authorization: 6497a013e40152afd6a992a3
+
+# ======== burrow api
+### fetch
+GET  {{burrowApi}}
+Authorization: 6497cf2eaee2d920dcb2aa54
 
 
-# ========= Burrow API ==========
-
-###create new burrow record
-POST {{burrowApi}}
+### create new burrow record
+POST  {{burrowApi}}
 Content-Type: application/json
 
 {
-    "bookId": "sdf78g",
-    "BookName": "Laxman",
-    "thumbnail": "http://...",
-    "userId": "sdfgh",
-    "userName": "how to code",
+    "bookId": "64a8a1458bdb18e8ec429572",
+    "BookName": "Python Programming",
+    "thumbnail": "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fcdn2.penguin.com.au%2Fcovers%2Foriginal%2F9781593278229.jpg&f=1&nofb=1&ipt=6a9f4bba59419a8cd6d58f5655f90c13879dad0d64f1e976cd7f6ec970267e17&ipo=images",
+    "userId": "asljflj02840",
+    "userName": "64983507452b879954cdcedc",
     "returnDate": "2023-12-12"
 }
