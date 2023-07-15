@@ -8,6 +8,7 @@ import cors  from "cors";
 import bookRouter from "./src/routers/bookRouter.js";
 import burrowRouter from "./src/routers/burrowRouter.js";
 import { auth } from './src/middleware/authMiddleware.js';
+import reviewRouter from './src/routers/reviewRouter.js'
 
 
 const PORT = process.env.PORT || 8000;
@@ -27,6 +28,7 @@ app.use(cors()); //cors() is the function
 app.use("/api/v1/user", userRouter)
 app.use("/api/v1/books", bookRouter);
 app.use("/api/v1/burrow",auth, burrowRouter);
+app.use("./app/v1/review", reviewRouter)
 
 app.use("/", (req, res) =>{
     res.json({
